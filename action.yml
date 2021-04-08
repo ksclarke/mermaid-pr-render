@@ -1,0 +1,17 @@
+name: 'Mermaid CLI Action'
+description: 'Renders Mermaid diagrams'
+inputs:
+  mmd-pattern:
+    description: 'The Mermaid file to transform'
+    required: false
+    default: '**/*.mmd'
+  mmd-output:
+    description: 'The desired output format: png, svg, or pdf'
+    required: false
+    default: 'svg'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.mmd-pattern }}
+    - ${{ inputs.mmd-output }}

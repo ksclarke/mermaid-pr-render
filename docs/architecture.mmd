@@ -1,0 +1,25 @@
+sequenceDiagram
+
+MainVerticle->>File System: Set up file system watcher
+
+loop As new CSVs are added or updated
+ File System->>WatcherVerticle: Sends new/updated CSV event
+
+ loop As WatcherVerticle finds new audio items
+  WatcherVerticle->>ConverterVerticle: Sends item / audio file conversion request
+  ConverterVerticle->>File System: Writes temporary MP4 audio file
+  ConverterVerticle->>PairtreeVerticle: Sends item with audio file for insertion into Pairtree
+  File System->>PairtreeVerticle: Reads temporary MP4 audio file
+  PairtreeVerticle->>ConverterVerticle: Notifies of successful Pairtree insertion
+  ConverterVerticle->>File System: Deletes temporary MP4 audio file
+  ConverterVerticle->>WatcherVerticle: Sends end of loop notification
+ end
+
+ loop As WatcherVerticle finds new video items
+  WatcherVerticle->>PairtreeVerticle: Sends item with video file for insertion into Pairtree
+  File System->>PairtreeVerticle: Reads MP4 video file
+  PairtreeVerticle->>WatcherVerticle: Sends end of loop notification
+ end
+
+ WatcherVerticle->>File System: Writes modified CSV file
+end
