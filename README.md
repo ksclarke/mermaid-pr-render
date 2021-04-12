@@ -2,7 +2,7 @@
 
 A GitHub Action that uses the [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) to render [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams in pull requests.
 
-This action supports workflows which don't involve pushing directly to the main branch but, instead, require merges to main to go through a pull request from another branch.
+This action supports workflows which don't involve pushing directly to the main branch but, instead, require merges to go through a pull request from another branch.
 
 ## How to Use
 
@@ -35,19 +35,20 @@ jobs:
       uses: ksclarke/mermaid-cli-action@main
       with:
         # These are the default values (see below for other parameters)
-        mmd-pattern: "**/*.mmd"
-        mmd-output: "svg"
+        mmd-pattern: '**/*.mmd'
+        mmd-output: 'svg'
 
     - name: Commit rendered SVG files
       uses: stefanzweifel/git-auto-commit-action@be7095c202abcf573b09f20541e0ee2f6a3a9d9b # v4.9.2
       with:
         # Change `file_pattern` to match your `mmd-output` parameter
-        file_pattern: "*[.svg]"
+        file_pattern: '*[.svg]'
         commit_message: Add automatically rendered Mermaid diagrams
 ```
 
 <details>
 <summary>View an example with signed commits</summary>
+
 ```
 name: 'Mermaid PR Render'
 
@@ -72,8 +73,8 @@ jobs:
     - name: Render Mermaid diagrams to SVG
       uses: ksclarke/mermaid-cli-action@main
       with:
-        mmd-pattern: "**/*.mmd"
-        mmd-output: "svg"
+        mmd-pattern: '**/*.mmd'
+        mmd-output: 'svg'
 
     - name: Import GPG key
       uses: crazy-max/ghaction-import-gpg@b0793c0060c97f4ef0efbac949d476c6499b7775 # v3.1.0
@@ -87,12 +88,13 @@ jobs:
     - name: Commit rendered SVG files
       uses: stefanzweifel/git-auto-commit-action@be7095c202abcf573b09f20541e0ee2f6a3a9d9b # v4.9.2
       with:
-        file_pattern: "*[.svg]"
+        file_pattern: '*[.svg]'
         commit_message: Add automatically rendered Mermaid diagrams
-        # Include the bot (or account) whose GPG key you've stored)
+        # Include the bot (or account) whose GPG key you've stored in the project's secrets
         commit_user_name: Your Bot
         commit_user_email: your_bot@example.com
 ```
+
 </details>
 
 This will run the action when a pull request is opened and update the PR branch with the rendered Mermaid diagram. The rendered diagram is stored in the same directory as the source Mermaid text file. The rendered diagram can then be referenced from the documentation page (e.g. README.md or ARCHITECTURE.md) using an `img` tag.
