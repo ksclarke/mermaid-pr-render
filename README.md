@@ -111,4 +111,4 @@ The Mermaid CLI has several parameters that one can supply to affect how the out
 
 ## Contact
 
-If you encounter a problem or have a feature to suggest, submit it to the [issue queue](https://github.com/ksclarke/mermaid-pr-render/issues "GitHub Issue Queue").
+If you encounter a problem using the action or have a new feature to suggest, please open a ticket in the [issue queue](https://github.com/ksclarke/mermaid-pr-render/issues "GitHub Issue Queue"). Thanks for checking the project out.
