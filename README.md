@@ -98,3 +98,17 @@ jobs:
 </details>
 
 This will run the action when a pull request is opened and update the PR branch with the rendered Mermaid diagram. The rendered diagram is stored in the same directory as the source Mermaid text file. The rendered diagram can then be referenced from the documentation page (e.g. README.md or ARCHITECTURE.md) using an `img` tag.
+
+## Configuration
+
+The Mermaid CLI has several parameters that one can supply to affect how the output diagram is rendered. All configuration options for mermaid-pr-render are optional. The defaults are listed in the table below:
+
+| Parameter | Description | Default Value | Example Value |
+--- | --- | --- | ---
+| mmd-pattern | The [globstar](http://mywiki.wooledge.org/glob) pattern for Mermaid files | '**/*.mmd' | '**/*.mermaid' |
+| mmd-output | The file extension (i.e., type) of the output file | 'svg' | 'png' |
+
+
+## Contact
+
+If you encounter a problem or have a feature to suggest, submit it to the [issue queue](https://github.com/ksclarke/mermaid-pr-render/issues "GitHub Issue Queue").
